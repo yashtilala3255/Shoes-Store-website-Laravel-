@@ -78,6 +78,14 @@ Many more....
 
 <p style="text-align:center">Thank You so much for your time !!!</p>
 
+## ======= HOW TO SET-UP =======
+1. clone repo ```git clone https://github.com/yashtilala3255/Shoes-Store-website-Laravel-.git```
+2. install composer ```composer install```
+3.copy ```.env.example``` / ```.env```
+4.set-up database import database from database folder ```e-shop.sql``` (don`f forget set database name ```e-shop```)
+5. Run ```php artisan serve``` 
+
+
 
 ### Screenshots :
 ![screencapture-e-shop-loc-admin-2020-08-15-15_47_37](https://user-images.githubusercontent.com/29488275/90719413-13b82200-e2d4-11ea-8ca0-f0e5551c4c9d.png)
