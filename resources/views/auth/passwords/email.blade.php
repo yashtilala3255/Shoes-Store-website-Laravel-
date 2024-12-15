@@ -2,8 +2,22 @@
 <html lang="en">
 
 <head>
-@include('backend.layouts.head')
+  @include('backend.layouts.head')
+  <style>
+    /* Styling for the left rectangle with image */
+    .bg-password-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f9fc; /* Light gray background */
+    }
 
+    .bg-password-image img {
+      max-width: 80%; /* Image responsiveness */
+      height: auto;
+      border-radius: 10px; /* Optional: Rounded corners for image */
+    }
+  </style>
 </head>
 
 <body class="bg-gradient-primary">
@@ -19,47 +33,60 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+              <!-- Left Rectangle with Image -->
+              <div class="col-lg-6 d-flex justify-content-center align-items-center bg-password-image">
+                <img src="{{ asset('login.png') }}" alt="Forgot Password Image">
+              </div>
+              <!-- Right Side: Forgot Password Form -->
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                    <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</p>
+                    <p class="mb-4">
+                      We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!
+                    </p>
                   </div>
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                  <form class="user"  method="POST" action="{{ route('password.email') }}">
+
+                  @if (session('status'))
+                  <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                  </div>
+                  @endif
+
+                  <!-- Form -->
+                  <form class="user" method="POST" action="{{ route('password.email') }}">
                     @csrf
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                      <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror"
+                             id="exampleInputEmail" aria-describedby="emailHelp" 
+                             placeholder="Enter Email Address..." 
+                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                      @error('email')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                       Reset Password
                     </button>
                   </form>
+
                   <hr>
                   <div class="text-center">
                     <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div> <!-- End col-lg-6 (Right Side) -->
+            </div> <!-- End row -->
           </div>
         </div>
 
-      </div>
+      </div> <!-- End col-xl-10 -->
 
-    </div>
+    </div> <!-- End row justify-content-center -->
 
-  </div>
+  </div> <!-- End container -->
 
 </body>
 
